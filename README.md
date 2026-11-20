@@ -20,7 +20,7 @@ data/raw_dataset.csv.dvc   the course dataset, versioned with DVC (the CSV itsel
 | What | Tool | Stored in |
 |---|---|---|
 | Code | Git | this GitHub repository |
-| Dataset | DVC | the DVC remote (see `.dvc/config`) |
+| Dataset | DVC | DagsHub storage of the same repository (remote `origin` in `.dvc/config`) |
 | Runs, metrics, models | MLflow | DagsHub: <https://dagshub.com/HadiHz88/aide505-mlflow-dagshub/experiments> |
 | API image | Docker | `ghcr.io/hadihz88/aide505-mlflow-dagshub` |
 
@@ -38,6 +38,18 @@ jupyter notebook MLFlowSetup.ipynb
 ```
 
 `dagshub.init(...)` in the notebook opens a browser tab to log in to DagsHub the first time.
+
+## Get the dataset
+
+`data/raw_dataset.csv` (23 MB, the course's DVC dataset) is not in Git; DVC stores it in the
+repository's DagsHub storage. DagsHub uses your access token as both S3 keys. Keep them out of Git
+with `--local`:
+
+```bash
+dvc remote modify origin --local access_key_id <DagsHub token>
+dvc remote modify origin --local secret_access_key <DagsHub token>
+dvc pull
+```
 
 ## Build and run the API locally
 
