@@ -75,7 +75,8 @@ curl -s -X POST localhost:8000/predict -H 'Content-Type: application/json' -d @a
 `pixels` must hold 64 values from 0 to 16 (the 8×8 image, row by row); anything else is
 rejected with a 422.
 
-Or run the image the workflow built:
+Or run the image the workflow built (packages on ghcr.io start out private; this needs the
+package's visibility set to public in its settings, or a `docker login ghcr.io`):
 
 ```bash
 docker run --rm -p 8000:8000 ghcr.io/hadihz88/aide505-mlflow-dagshub:latest
