@@ -1,0 +1,4 @@
+mlflow==3.18.0
+dagshub==0.7.3
+scikit-learn==1.9.1
+notebook
